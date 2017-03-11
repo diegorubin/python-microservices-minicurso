@@ -1,4 +1,4 @@
-from microserviceutils.resources import BaseResource
+from microservicesutils.resources import BaseResource
 
 class User(BaseResource):
 
