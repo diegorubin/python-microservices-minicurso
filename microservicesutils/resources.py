@@ -1,3 +1,5 @@
+import json
+
 class BaseResource():
 
     def init_attributes(self, attributes, options = {}):
@@ -13,4 +15,7 @@ class BaseResource():
     def get_attribute(self, name):
         if hasattr(self, 'attributes'):
             return self.attributes[name]
+
+    def toJSON(self):
+        return json.dumps(self.attributes)
 

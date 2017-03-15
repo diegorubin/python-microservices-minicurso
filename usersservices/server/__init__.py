@@ -23,7 +23,7 @@ def make_app():
 
 def start():
 
-    create_tables(['User'])
+    create_tables([UserModel])
 
     logger.initialize_logging('users')
 

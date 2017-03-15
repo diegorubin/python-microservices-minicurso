@@ -1,7 +1,11 @@
-import tornado.web
+from tornado_json.requesthandlers import APIHandler
 
-class UsersController(tornado.web.RequestHandler):
+from usersservices.models.user import UserModel
+from usersservices.resources.user import users_as_resource
+
+class UsersController(APIHandler):
 
     def get(self):
-        self.success({'users': []})
+        users = UserModel.select()
+        self.success({'users': users_as_resource(users)})
 

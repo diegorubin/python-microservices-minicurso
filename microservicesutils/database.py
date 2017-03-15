@@ -9,5 +9,5 @@ class BaseModel(Model):
 
 def create_tables(tables):
     database.connect()
-    database.create_tables(tables)
+    database.create_tables(tables, safe=True)
 
