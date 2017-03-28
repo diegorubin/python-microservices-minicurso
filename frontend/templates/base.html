@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Page</title>
+  
+    <link rel="stylesheet" href="{{ static_url("bootstrap.css") }}" type="text/css" />
+    <link rel="stylesheet" href="{{ static_url("bootstrap-theme.css") }}" type="text/css" />
+    <link rel="stylesheet" href="{{ static_url("application.css") }}" type="text/css" />
+    <script src="{{ static_url("bootstrap.min.js") }}"></script>
+  </head>
+  
+  <body>
+    <div class="container">
+
+      <div class="masthead">
+        <h3 class="text-muted">Livros</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="/">Home</a></li>
+            <li><a href="/books">Livros</a></li>
+            <li><a href="/users">Usuários</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      {% block body %}{% end %}
+
+      <footer class="footer">
+        <p>&copy; 2017 Diego Rubin</p>
+      </footer>
+
+    </div>
+
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+    aria-labelledby="loginLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+            aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="loginLabel">Login</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"
+            data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script src="{{ static_url("jquery.min.js") }}"></script>
+  <script src="{{ static_url("bootstrap.min.js") }}"></script>
+  <script src="{{ static_url("application.js") }}"></script>
+
+</html>
+

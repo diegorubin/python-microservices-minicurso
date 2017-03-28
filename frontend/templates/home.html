@@ -1,20 +1,24 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "base.html" %}
 
-  <head>
-    <meta charset="UTF-8"/>
-    <title>Page</title>
+{% block body %}
+  <div class="jumbotron">
+    <h1>Leia!</h1>
+    <p class="lead">Essa aplicação é um exemplo para o minicurso de python e
+    microservices.</p>
+    <p>
+      <a id="new-user" class="btn btn-primary" href="#" role="button">Criar usuário</a>
+    </p>
+    <p>
+      Ou faça o <a id="login" href="#">login</a>.
+    </p>
+  </div>
   
-    <link rel="stylesheet" href="{{ static_url("bootstrap.css") }}" type="text/css" />
-    <link rel="stylesheet" href="{{ static_url("bootstrap-theme.css") }}" type="text/css" />
-    <link rel="stylesheet" href="{{ static_url("application.css") }}" type="text/css" />
-  </head>
-  
-  <body>
-    <div class="container">
-      <h1>Hello Page</h1>
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Título do Livro</h2>
+      <p>Descrição do livro.</p>
+      <p><a class="btn btn-primary" href="#" role="button">Ver detalhes &raquo;</a></p>
     </div>
-  </body>
-
-</html>
+  </div>
+{% end %}
 

@@ -19,3 +19,5 @@ class BaseResource():
     def toJSON(self):
         return json.dumps(self.attributes)
 
+
+
