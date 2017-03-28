@@ -6,6 +6,7 @@ from microservicesutils import logger
 from microservicesutils.logger import general
 from microservicesutils.settings import FRONTEND_SERVER_PORT, DEBUG
 
+from frontend.controllers.auth_controller import AuthController
 from frontend.controllers.home_controller import HomeController
 
 class Static(tornado.web.RequestHandler):
@@ -17,6 +18,7 @@ def make_app():
     app = tornado.web.Application(
         [
             (r"/", HomeController),
+            (r"/auth", AuthController),
             (r"/static/([\w_\.-]+)", Static),
         ],
         template_path=os.path.join(os.path.dirname(__file__), '..', 'templates'),
