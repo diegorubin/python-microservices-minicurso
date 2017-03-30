@@ -10,9 +10,6 @@ from usersservices.server import make_app
 
 class TestUsersController(AsyncHTTPTestCase):
 
-    def tearDown(self):
-        pass
-
     def get_app(self):
         return make_app()
 
@@ -25,15 +22,18 @@ class TestUsersController(AsyncHTTPTestCase):
 
     def test_create_valid_user(self):
         with patch('usersservices.controllers.users_controller.create_user') as c:
+            c.return_value = "uidhash"
+
             body = json_encode(self.get_valid_user())
             response = self.fetch('/api/users', method='POST', body=body)
             data = json.loads(response.body.decode())["data"]
-            self.assertEquals(c.call_args[0][0], self.get_valid_user())
+
         self.assertEqual(response.code, 201)
         self.assertFalse("errors" in data)
 
     def get_valid_user(self):
         return {
+            "uid": "",
             "name": "a name",
             "email": "an_email@example.com",
             "password": "123456"

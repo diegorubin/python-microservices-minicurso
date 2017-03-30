@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Usuários
+{% end %}
+
+{% block body %}
+  <div class="row">
+    {% for user in users %}
+      <div class="col-lg-4">
+        <img class="avatar" src="https://www.gravatar.com/avatar/{{user["image"]}}">
+        <h2>{{ user["name"] }}</h2>
+        <p>{{ user["email"] }}</p>
+      </div>
+    {% end %}
+  </div>
+{% end %}

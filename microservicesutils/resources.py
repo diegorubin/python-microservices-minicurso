@@ -1,15 +1,12 @@
 class BaseResource():
 
-    def init_attributes(self, attributes, options = {}):
+    def init_attributes(self, attributes, validations = {}, defaults = {}):
         self.attributes = {}
-        self.options = options
-
-        if not 'defaults' in self.options:
-            self.options['defaults'] = {}
+        self.validations = validations
 
         for attribute in attributes:
-            if attribute in self.options['defaults']:
-                self.attributes[attribute] = self.options['defaults'][attribute]
+            if attribute in defaults:
+                self.attributes[attribute] = defaults[attribute]
             else:
                 self.attributes[attribute] = ''
 
@@ -24,7 +21,7 @@ class BaseResource():
 
     def is_valid(self):
         self.errors = {}
-        for field, validations in self.options['validations'].items():
+        for field, validations in self.validations.items():
             for validation, args in validations.items():
                 method = "check_%s_validation"%(validation)
                 getattr(self, method)(field, args)

@@ -1,24 +1,30 @@
 {% extends "base.html" %}
 
+{% block title %}
+  Home
+{% end %}
+
 {% block body %}
   <div class="jumbotron">
     <h1>Leia!</h1>
     <p class="lead">Essa aplicação é um exemplo para o minicurso de python e
     microservices.</p>
-    <p>
-      <a id="new-user" class="btn btn-primary" href="#" role="button">Criar usuário</a>
-    </p>
-    <p>
-      Ou faça o <a id="login" href="#">login</a>.
-    </p>
+    {% if user %}
+      <p>
+        Olá {{ user["name"] }}
+      </p>
+      <p>
+        <a id="logout" href="#">Fazer logout</a>.
+      </p>
+    {% else %}
+      <p>
+        <a id="new-user" class="btn btn-primary" href="#" role="button">Criar usuário</a>
+      </p>
+      <p>
+        Ou faça o <a id="login" href="#">login</a>.
+      </p>
+    {% end %}
   </div>
   
-  <div class="row">
-    <div class="col-lg-4">
-      <h2>Título do Livro</h2>
-      <p>Descrição do livro.</p>
-      <p><a class="btn btn-primary" href="#" role="button">Ver detalhes &raquo;</a></p>
-    </div>
-  </div>
 {% end %}
 

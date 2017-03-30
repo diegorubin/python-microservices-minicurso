@@ -91,3 +91,9 @@ body {
 #login-error {
   color: red;
 }
+
+.avatar {
+  float: left;
+  padding: 10px;
+}
+

@@ -12,3 +12,7 @@ LOG_PATH = environ.get("SERVICE_LOG_PATH",join(abspath(curdir), "log"))
 LOG_LEVEL = environ.get("SERVICE_LOG_LEVEL", "INFO")
 DEBUG = environ.get("SERVICE_DEBUG", "False") == "True"
 
+# USERS API
+USERS_AUTH_API = environ.get('USERS_HOST', 'http://localhost:8890/api/auth')
+USERS_API = environ.get('USERS_HOST', 'http://localhost:8890/api/users')
+

@@ -1,5 +1,6 @@
-import tornado.web
+from frontend.controllers.base_controller import BaseController
 
-class HomeController(tornado.web.RequestHandler):
+class HomeController(BaseController):
     def get(self):
-        self.render("home.html")
+        self.render("home.html", user=self.get_current_user())
+

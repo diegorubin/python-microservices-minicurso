@@ -6,8 +6,9 @@ from microservicesutils import logger
 from microservicesutils.logger import general
 from microservicesutils.settings import FRONTEND_SERVER_PORT, DEBUG
 
-from frontend.controllers.auth_controller import AuthController
 from frontend.controllers.home_controller import HomeController
+from frontend.controllers.sessions_controller import SessionsController
+from frontend.controllers.users_controller import UsersController, UsersAPIController
 
 class Static(tornado.web.RequestHandler):
 
@@ -18,12 +19,15 @@ def make_app():
     app = tornado.web.Application(
         [
             (r"/", HomeController),
-            (r"/auth", AuthController),
+            (r"/sessions", SessionsController),
+            (r"/users", UsersController),
+            (r"/api/users", UsersAPIController),
             (r"/static/([\w_\.-]+)", Static),
         ],
         template_path=os.path.join(os.path.dirname(__file__), '..', 'templates'),
         static_path=os.path.join(os.path.dirname(__file__), '..', 'static'),
-        debug=DEBUG
+        debug=DEBUG,
+        cookie_secret="c641ea2aaa462236d1963115e01e70b24277cf1814c503ca98fc0f70dd8bedfc"
     )
     return app
 

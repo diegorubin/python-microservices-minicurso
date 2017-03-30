@@ -9,11 +9,14 @@ from microservicesutils.settings import USERS_SERVER_PORT, DEBUG
 
 from usersservices.models.user import UserModel
 
-from usersservices.controllers.users_controller import UsersController
+from usersservices.controllers.auth_controller import AuthController
+from usersservices.controllers.users_controller import UserController, UsersController
 
 def make_app():
     app = tornado.web.Application(
         [
+            (r"/api/auth", AuthController),
+            (r"/api/users/(\w+)", UserController),
             (r"/api/users", UsersController),
         ],
         debug=DEBUG
