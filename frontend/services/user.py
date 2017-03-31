@@ -12,8 +12,8 @@ def create(attributes):
 
     try:
         response = client.fetch(request)
-        json.loads(response.body.decode())
-    except:
+        return json.loads(response.body.decode())['data']['user']
+    except Exception as e:
         application.error('error on create user:' + str(e))
         return None
 

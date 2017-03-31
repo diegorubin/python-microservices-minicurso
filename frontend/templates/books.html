@@ -6,10 +6,14 @@
 
 {% block body %}
   <div class="row">
-    <div class="col-lg-4">
-      <h2>Título do Livro</h2>
-      <p>Descrição do livro.</p>
-      <p><a class="btn btn-primary" href="#" role="button">Ver detalhes &raquo;</a></p>
-    </div>
+    {% for book in books %}
+      <div class="col-lg-4 book">
+        <img class="cover thumb" src="{{book["cover"]}}">
+        <div class="details">
+          <a href="/books/{{ book["isbn"] }}">{{ book["name"] }}</a>
+          <p>{{ book["author"] }}</p>
+        </div>
+      </div>
+    {% end %}
   </div>
 {% end %}

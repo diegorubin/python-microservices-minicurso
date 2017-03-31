@@ -1,5 +1,7 @@
 from tornado_json.requesthandlers import APIHandler
 
+from microservicesutils.logger import application
+
 from frontend.services.user import create, index
 from frontend.controllers.base_controller import BaseController
 
@@ -16,10 +18,11 @@ class UsersAPIController(APIHandler):
             "password": self.get_body_argument('password')
         }
         try:
-            create(user)
-            self.set_secure_cookie("user", self.get_body_argument('email'))
+            result = create(user)
+            self.set_secure_cookie("user", result['uid'])
             self.success({'message': 'Usuário criado com sucesso!'})
-        except:
+        except Exception as e:
+            application.error('error on create user in api: ' + str(e))
             self.set_status(422)
             self.fail({'message': 'Não foi possível criar o usuário'})
 

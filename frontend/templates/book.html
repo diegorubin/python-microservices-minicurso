@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ book["name"] }}
+{% end %}
+
+{% block body %}
+  <div class="row">
+    <div class="book-content">
+      <img class="cover" src="{{book["cover"]}}">
+      <h1>{{ book["name"] }}</h1>
+      <p>{{ book["author"] }}</p>
+      <p>
+        {% raw book["description"].replace("\n", "</p><p>") %}
+      </p>
+    </div>
+  </div>
+
+  {% if user %}
+    <a href="#" id="new-comment">Deixe um comentário</a>
+  {% else %}
+    <label>Para poder comentar você precisa estar logado.</label>
+  {% end %}
+
+  <h2>Comentários</h2>
+
+  {% for comment in comments %}
+      <div class="comment">
+        <img class="avatar"
+        src="https://www.gravatar.com/avatar/{{comment["user"]["image"]}}">
+        <h3>{{ comment["user"]["name"] }}</h3>
+        {% raw comment['comment'].replace("\n", "</br>") %}
+      </div>
+  {% end %}
+
+  {% if user %}
+    <div class="modal fade" id="comment-modal" tabindex="-1" role="dialog"
+      aria-labelledby="userLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+            aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="userLabel">Novo Comentário</h4>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="comment-user" value="{{user["uid"]}}">
+            <input type="hidden" id="comment-resource_type" value="book">
+            <input type="hidden" id="comment-resource_uid" value="{{book["isbn"]}}">
+            <div class="form-group">
+              <span id="comment-error"></span>
+            </div>
+            <div class="form-group">
+              <textarea id="comment-input" class="form-control">
+              </textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"
+            data-dismiss="modal">Fechar</button>
+            <button id="comment-button" type="button" class="btn btn-primary">Criar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% end %}
+{% end %}

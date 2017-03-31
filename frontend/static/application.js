@@ -10,6 +10,11 @@ $(document).ready(function(){
     $('#user-modal').modal('show');
   });
 
+  $('#new-comment').click(function(event) {
+    event.preventDefault();
+    $('#comment-modal').modal('show');
+  });
+
   $('#login-button').click(function(event) {
     event.preventDefault();
 
@@ -65,5 +70,27 @@ $(document).ready(function(){
     });
   });
 
+  $('#comment-button').click(function(event) {
+    event.preventDefault();
+
+    var data = {
+      user: $('#comment-user').val(),
+      resource_type: $('#comment-resource_type').val(),
+      resource_uid: $('#comment-resource_uid').val(),
+      comment: $('#comment-input').val()
+    };
+
+    $.ajax({ 
+      url: '/api/comments', 
+      method: 'post', 
+      data: data
+    }).done( function() {
+      $('#comment-modal').modal('hide');
+      window.location.reload();
+    }).fail( function(response) {
+      var responseData = response.responseJSON;
+      $('#comment-error').html(responseData.data.message);
+    });
+  });
 });
 

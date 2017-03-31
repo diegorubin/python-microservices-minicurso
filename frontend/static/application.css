@@ -97,3 +97,26 @@ body {
   padding: 10px;
 }
 
+.cover {
+  float: left;
+  padding: 10px;
+}
+
+.details {
+  float: left;
+  padding: 10px;
+  max-width: 180px;
+}
+
+.book {
+  height: 180px;
+}
+
+.book-content {
+  margin: 50px;
+}
+
+.thumb {
+  width: 130px;
+}
+
