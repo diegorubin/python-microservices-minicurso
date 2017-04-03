@@ -21,7 +21,36 @@ class GeometriaController(APIHandler):
         }
     )
     def post(self):
-        pass
+        request = self.body
+        if not "figura" in request:
+            self.set_status(422)
+        else:
+            if hasattr(self, request["figura"]):
+                return getattr(self, request["figura"])(request)
+            else:
+                self.set_status(404)
+
+    def circulo(self, request):
+        if not "raio" in request:
+            self.set_status(422)
+        else:
+            raio = request['raio']
+            return {
+                'diametro': raio * 2,
+                'circunferencia': 2 * PI * raio,
+                'area': PI * math.pow(raio,2)
+            }
+
+    def retangulo(self, request):
+        if (not "altura" in request) and (not "largura" in request):
+            self.set_status(422)
+        else:
+            altura = request['altura']
+            largura = request['largura']
+            return {
+                'area': altura * largura,
+                'quadrado': altura == largura
+            }
 
 
 def make_app():
